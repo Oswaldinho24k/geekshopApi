@@ -1,0 +1,9 @@
+<div>Holapapae</div>
+{%for p in productos%}
+	
+	<h1>{{p.nombre}}</h1>
+	<h2>{{p.precio}}</h2>
+	<h3>{{p.color}}</h3>
+	<img src="/media/{{p.imagen}}">
+	<hr>
+{%endfor%}

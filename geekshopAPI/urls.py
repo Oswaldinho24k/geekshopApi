@@ -18,6 +18,9 @@ from django.contrib import admin
 from django.conf import settings
 from django.views.static import serve
 
+from products import urls as productUrls
+from api import urls as apiUrls
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -25,5 +28,6 @@ urlpatterns = [
        regex=r'^media/(?P<path>.*)$',
        view=serve,
        kwargs={'document_root':settings.MEDIA_ROOT}),
-    url(r'^'include(productUrls))
+    url(r'^products/', include(productUrls, namespace="products")),
+    url(r'^api/', include(apiUrls, namespace="api"))
     ]
