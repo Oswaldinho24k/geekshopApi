@@ -4,7 +4,10 @@ from api import views
 
 
 router = routers.DefaultRouter()
-# Additionally, we include login URLs for the browsable API.
+
+
+router.register(r'products', views.ProductViewSet)
+
 urlpatterns = [
     url(r'^', include(router.urls)),
     #url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
