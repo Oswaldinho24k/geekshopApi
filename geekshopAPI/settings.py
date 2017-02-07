@@ -133,7 +133,7 @@ MEDIA_URL = '/media/'
 
 CORS_ORIGIN_WHITELIST = (
    
-    'localhost:3000',
+    'localhost:8001',
     
 )
 
