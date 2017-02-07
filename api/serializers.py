@@ -1,23 +1,29 @@
 from rest_framework import serializers
-from products.models import Producto, Color, Size
+from products.models import Producto, Color, Size, Imagini
 
 class ColorSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Color 
-		fields = ('color', 'id')
+		fields = ('name', 'hexa')
 
 class SizeSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Size
 		fields = ('quantity', 'size', 'id')
 
+class ImaginiSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Imagini
+		fields = ('img', 'prod')
+
 class ProductSerializer(serializers.ModelSerializer):
-	color = ColorSerializer(many=True)
+	colors = ColorSerializer(many=True)
 	stock = SizeSerializer(many=True)
-	
+	producto = ImaginiSerializer(many=True)
+
 	class Meta:
 		model = Producto
-		fields = ('name', 'image', 'color', 'price', 'stock', 'id')
+		fields = ('name', 'colors', 'price', 'stock', 'id', 'producto')
 		
 
 
