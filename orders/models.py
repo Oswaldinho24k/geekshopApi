@@ -9,7 +9,7 @@ class Order(models.Model):
 	clastname = models.CharField(max_length=100, blank=True, null=True)
 	date=models.DateField(auto_now_add=True, db_index=True, blank=True, null=True)
 	products=models.ManyToManyField(Producto, blank=True)
-	total = models.DecimalField(decimal_places=2, max_digits=5, blank=True, null=True)
+	total = models.DecimalField(decimal_places=2, max_digits=100, blank=True, null=True)
 	address1 = models.TextField(blank=True, null=True)
 	address2 = models.TextField(blank=True, null=True)
 	cp = models.IntegerField(blank=True, null=True)
