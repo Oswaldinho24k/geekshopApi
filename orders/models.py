@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from products.models import Producto
 
-# Create your models here.
 
+# Create your models here.
 
 class Order(models.Model):
 	user=models.OneToOneField(User, blank=True, null=True)
@@ -32,6 +32,4 @@ class Quantity(models.Model):
 
 	def __str__(self):
 		return self.product
-
-
 
