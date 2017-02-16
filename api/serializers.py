@@ -27,12 +27,13 @@ class ProductSerializer(serializers.ModelSerializer):
 		fields = ('name', 'colors', 'price', 'stock', 'id', 'producto')
 
 class OrderSerializer(serializers.ModelSerializer):
-	#products = 
-
+	
+	quantity = serializers.StringRelatedField(many=True)
 	class Meta:
 		model = Order
-		fields = ('id', 'cname', 'clastname', 'address1', 'address2','cp', 'tel', 'date', 'products', 'total', 'country', 'city')
+		fields = ('id','quantity', 'cname', 'clastname', 'address1', 'address2','cp', 'tel', 'date', 'total', 'country', 'city')
 		
+
 
 
 
