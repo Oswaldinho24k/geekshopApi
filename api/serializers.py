@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from products.models import Producto, Color, Size, Imagini
-from orders.models import Order
+from orders.models import Order,  Quantity
 
 class ColorSerializer(serializers.ModelSerializer):
 	class Meta:
@@ -25,6 +25,12 @@ class ProductSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Producto
 		fields = ('name', 'colors', 'price', 'stock', 'id', 'producto')
+
+class QuantitySerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Quantity
+		fields = ('quantity', 'product', 'order')
+
 
 class OrderSerializer(serializers.ModelSerializer):
 	
