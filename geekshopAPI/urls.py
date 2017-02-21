@@ -19,7 +19,8 @@ from django.conf import settings
 from django.views.static import serve
 
 from products import urls as productUrls
-from api import urls as apiUrls
+from products.api import urls as productApiUrls
+from orders.api import urls as orderApiUrls
 
 
 urlpatterns = [
@@ -29,5 +30,6 @@ urlpatterns = [
        view=serve,
        kwargs={'document_root':settings.MEDIA_ROOT}),
     url(r'^products/', include(productUrls, namespace="products")),
-    url(r'^api/', include(apiUrls, namespace="api"))
+    url(r'^products/api/', include(productApiUrls, namespace="productapi")), 
+    url(r'^orders/api/', include(orderApiUrls, namespace="orderapi")), 
     ]
