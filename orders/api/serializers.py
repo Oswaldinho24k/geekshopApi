@@ -12,4 +12,3 @@ class OrderSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Order
 		fields = ('id', 'cname', 'clastname','total', 'address1', 'address2', 'cp', 'tel', 'city', 'country', 'item' )
-
