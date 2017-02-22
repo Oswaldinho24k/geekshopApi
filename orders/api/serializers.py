@@ -7,7 +7,7 @@ class QuantitySerializer(serializers.ModelSerializer):
 		fields = ('quantity','product')
 
 class OrderSerializer(serializers.ModelSerializer):
-	item = QuantitySerializer(many=True, read_only=True)
+	item = QuantitySerializer(many=True)
 	class Meta:
 		model = Order
 		fields = ('id', 'cname', 'clastname','total', 'address1', 'address2', 'cp', 'tel', 'city', 'country', 'item' )
