@@ -134,6 +134,7 @@ USE_TZ = True
 CORS_ORIGIN_WHITELIST = (
    
     'localhost:8001',
+    'https://project-2814539431132233166.firebaseapp.com'
     
 )
 
