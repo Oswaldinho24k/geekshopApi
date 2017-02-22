@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from ..models import Order, Quantity
+from products.models import Producto
 
 class QuantitySerializer(serializers.ModelSerializer):
 	class Meta:
@@ -7,7 +8,7 @@ class QuantitySerializer(serializers.ModelSerializer):
 		fields = ('quantity','product')
 
 class OrderSerializer(serializers.ModelSerializer):
-	item = QuantitySerializer(many=True)
+	item = QuantitySerializer(many=True)	
 	class Meta:
 		model = Order
 		fields = ('id', 'cname', 'clastname','total', 'address1', 'address2', 'cp', 'tel', 'city', 'country', 'item' )
