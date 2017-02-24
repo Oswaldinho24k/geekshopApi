@@ -21,12 +21,12 @@ class Order(models.Model):
 	
 
 	def __str__(self):
-		return self.cname
+		return 'order {}'.format(self.id)
 
 class Quantity(models.Model):
 	order = models.ForeignKey(Order, related_name='item', blank=True, null=True)
 	quantity = models.IntegerField(blank=True, null=True)
-	product = models.OneToOneField(Producto , blank=True, null=True)
+	product = models.ForeignKey(Producto , blank=True, null=True)
 
 	def __str__(self):
 		return '{} shirt(s) id {} in order {}'.format(self.quantity, self.product.id, self.order.id)
