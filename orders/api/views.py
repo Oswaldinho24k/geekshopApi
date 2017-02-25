@@ -13,5 +13,4 @@ class OrderViewSet(viewsets.ModelViewSet):
 	queryset = Order.objects.all()
 	serializer_class = OrderSerializer
 
-	def create(self, validated_data):
-		return Quantity.objects.create(**validated_data)
+	
