@@ -149,4 +149,5 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
+CONEKTA_PRIVATE_KEY = 'key_uttsEXqPgZGWbSs9JeGbWg'
 
