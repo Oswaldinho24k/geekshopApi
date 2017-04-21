@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'products',
     'orders',
-    'corsheaders'
+    'corsheaders',
+    'conekta',
 ]
 
 MIDDLEWARE = [

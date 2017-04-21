@@ -1,11 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from rest_framework import viewsets
 from ..models import Order, Quantity
 from .serializers import OrderSerializer
 from rest_framework.response import Response
+from django.conf import settings
 
 from django.http import HttpResponse
 from rest_framework.decorators import detail_route
+import conekta
 
 
 
@@ -14,17 +16,22 @@ class OrderViewSet(viewsets.ModelViewSet):
 	queryset = Order.objects.all()
 	serializer_class = OrderSerializer
 
+	@detail_route(methods=['get'], 
+		serializer_class=OrderSerializer,)
+	def content(self, request, *args, **kwargs):
+		return self.retrieve(request, *args, **kwargs)
+
 	@detail_route(methods=['post'])
 	def pagar(self, request, *args, **kwargs):
 		conekta.api_key = settings.CONEKTA_PRIVATE_KEY
-
-		order_id=request.session.get('order_id')
+		
 		#orden de db de django
-		order=get_object_or_404(Order,id=order_id)
-		amount = order.total * 100
+		orderdj = self.get_object()
 		
-		
-		#metodo para pago y orden en conekta
+		print(orderdj)
+		print(orderdj.total)
+		amount = orderdj.total * 100
+
 		order = conekta.Order.create({
 		    "line_items": [{
 		        "name": "Compra total",
@@ -39,9 +46,9 @@ class OrderViewSet(viewsets.ModelViewSet):
 		    "currency": "MXN",
 		    "customer_info": {			    
 			    #"name": "Mario Perez",
-			    "name": order.cname,
-			    "email": 'hola@mail.com',
-			    "phone": "7712345678"
+			    "name": orderdj.cname,
+			    "email": 'os@fixter.org',
+			    "phone": orderdj.tel
 			  },
 		    "shipping_contact":{
 		     "phone": "5555555555",
@@ -63,9 +70,14 @@ class OrderViewSet(viewsets.ModelViewSet):
 		        
 		  }]
 		})
+		
+
 				
 
-		messages.success(request, 'siiiiiiii')
+		#messages.success(request, 'siiiiiiii')
+		orderdj.pagado=True
+		orderdj.save()
+
 		return HttpResponse('ya pagaste bro!!')
 
 	
