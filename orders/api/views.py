@@ -25,6 +25,8 @@ class OrderList(APIView):
             conekta.api_key = settings.CONEKTA_PRIVATE_KEY
             orderdj = serializer.data
             print(orderdj)
+            card = request.POST.get('conektaTokenId')
+            print(card)
             #print(orderdj.total)
             amount = Decimal(orderdj['total'])
             order = conekta.Order.create({
